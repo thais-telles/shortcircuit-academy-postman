@@ -1,0 +1,1882 @@
+{
+	"info": {
+		"_postman_id": "84f27c51-2084-4b74-8227-c4ddda4a866c",
+		"name": "2. Company",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27588711",
+		"_collection_link": "https://grey-robot-273771.postman.co/workspace/**-Academy---Short-Circuit-**~7da103ee-263d-4327-bdc5-43cbba73c08b/collection/27588711-84f27c51-2084-4b74-8227-c4ddda4a866c?action=share&source=collection_link&creator=27588711"
+	},
+	"item": [
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "Company Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify token is true\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"token\");\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"TokenUser\", JSON.parse(responseBody).token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mail\": \"{{MailAdmin}}\",\r\n  \"password\": \"{{PasswordAdmin}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"IdCompany\", JSON.parse(responseBody).user._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Teste\",\r\n  \"registerCompany\": \"66458297000146\",\r\n  \"mail\": \"test@test.com\",\r\n  \"matriz\": \"Teste\",\r\n  \"responsibleContact\": \"Marcio\",\r\n  \"telephone\": \"99999999999999\",\r\n  \"serviceDescription\": \"Testes\",\r\n  \"address\": [\r\n    {\r\n      \"zipCode\": \"04777001\",\r\n      \"city\": \"São Paulo\",\r\n      \"state\": \"SP\",\r\n      \"district\": \"Rua das Flores\",\r\n      \"street\": \"Avenida Interlagos\",\r\n      \"number\": \"50\",\r\n      \"complement\": \"de 4503 ao fim - lado ímpar\",\r\n      \"country\": \"Brasil\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/count",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company List ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f207ee10d79b032eca437",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f207ee10d79b032eca437"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Mandatory Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Belo Horizonte\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f207ee10d79b032eca437",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f207ee10d79b032eca437"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alphanumeric Company ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves 2025\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Belo Horizonte\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Id Without Duplication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves 2025\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Belo Horizonte\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Name Maximum 100 Characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Belo Horizonte\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID CNPJ Mandatory Field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Belo Horizonte\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Only Numbers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"LTDA\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Belo Horizonte\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Do Not Allow Duplication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Belo Horizonte\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Mandatory Company Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Alphanumeric Social Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"#Rodonaves & LTDA \",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Do Not Allow Duplicity Corporate Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves\",\r\n  \"responsibleContact\": \"João das Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID contact Responsible Field Mandatory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves\",\r\n  \"responsibleContact\": \"\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID contact Responsible Only Letters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Contact Responsible Maximum 100 Characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Contact Responsible Two Compound Words",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves Transportes e Encomendas para todo o estado do-Brasil Alimentos Bebidas Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves\",\r\n  \"responsibleContact\": \"João-Naves, Maria-Naves e Camilo-Naves\",\r\n  \"telephone\": \"5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Telephone Required",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves-Transportes-e-Encomendas-para-todo-o-estado-do-Brasil-Alimentos-Bebidas-Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves\",\r\n  \"responsibleContact\": \"João Naves\",\r\n  \"telephone\": \"\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Field Telephone Numbers Only",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves-Transportes-e-Encomendas-para-todo-o-estado-do-Brasil-Alimentos-Bebidas-Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"fixo: 5501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Field Telephone Only Brazilian Numbers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves-Transportes-e-Encomendas-para-todo-o-estado-do-Brasil-Alimentos-Bebidas-Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"35101636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Field Telephone Maximum 15 Characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves-Transportes-e-Encomendas-para-todo-o-estado-do-Brasil-Alimentos-Bebidas-Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes@rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"005501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Id Field Email Mandatory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves-Transportes-e-Encomendas-para-todo-o-estado-do-Brasil-Alimentos-Bebidas-Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"\",\r\n  \"matriz\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"005501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Id Field Email Valid Format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves-Transportes-e-Encomendas-para-todo-o-estado-do-Brasil-Alimentos-Bebidas-Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes-rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"005501636057845\",\r\n  \"serviceDescription\": \"Alimentos, etc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Id Field Description Mandatory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves-Transportes-e-Encomendas-para-todo-o-estado-do-Brasil-Alimentos-Bebidas-Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes-rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"005501636057845\",\r\n  \"serviceDescription\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Id Field Description Alphanumeric",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"corporateName\": \"Rodonaves-Transportes-e-Encomendas-para-todo-o-estado-do-Brasil-Alimentos-Bebidas-Frios e Aves LTDA\",\r\n  \"registerCompany\": \"12345678910111\",\r\n  \"mail\": \"rodonavestransportes-rodonaves.com.br\",\r\n  \"matriz\": \"Rodonaves Transportes e Encomendas para todo o estado do Brasil - Alimentos, Bebidas, Frios e Aves LTDA\",\r\n  \"responsibleContact\": \"2024\",\r\n  \"telephone\": \"005501636057845\",\r\n  \"serviceDescription\": \"@$%#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/657f1a15e10d79b032eca346",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"657f1a15e10d79b032eca346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"msg\": \"Companhia deletado com sucesso!.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/656fe0059de213e1de493349",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"656fe0059de213e1de493349"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Status ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/status/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"status",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company ID Address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"address\": [\r\n    {\r\n      \"zipCode\": \"04777001\",\r\n      \"city\": \"São Paulo\",\r\n      \"state\": \"SP\",\r\n      \"district\": \"Rua das Flores\",\r\n      \"street\": \"Avenida Interlagos\",\r\n      \"number\": \"50\",\r\n      \"complement\": \"de 4503 ao fim - lado ímpar\",\r\n      \"country\": \"Brasil\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/company/address/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"company",
+								"address",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://short-circuit.qacoders-academy.com.br"
+		}
+	]
+}
