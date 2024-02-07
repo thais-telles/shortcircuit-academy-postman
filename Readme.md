@@ -53,7 +53,3 @@ Dentro do repositório local, abra o Git Bash e siga os seguintes passos:
  ```sh default
     git push origin main
  ```
-
-## Projeto desenvolvido por: 
-[<img loading="lazy" src="" width=90><br/><sub>Thais Amanda Telles</sub>](https://github.com/thais-telles)<br/>[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/thais-telles/)]
- 
