@@ -24,13 +24,13 @@ Instale e Configure uma conta no Git. Para saber mais, [acesse o Git](https://gi
 ### **Para clonar o repositório do Git**
 
  ```sh default
- git clone git@github.com:thais-telles/shortcircuit-academy-postman.git
+    git clone git@github.com:thais-telles/shortcircuit-academy-postman.git
  ```
 
 ### **Verificando se tem alterações no repositório Git e baixar para o repositório local**
 
  ```sh default
- git pull
+    git pull
  ```
 
 ### **Transferindo arquivos do repositório local para o repositório Git** 
@@ -39,19 +39,19 @@ Dentro do repositório local, abra o Git Bash e siga os seguintes passos:
 
  1. Adicionar todos os ficheiros alterados
  ```sh default
- git add .
+    git add .
  ```
  2. Colocar na zona de "preparação do computador"
  ```sh default
- git commit -m "nome ou descrição da inclusão ou alteração"
+    git commit -m "nome ou descrição da inclusão ou alteração"
  ```
  3. Criar nome para as versões
  ```sh default
- git tag -a vx.x -m "version x.x"
+    git tag -a vx.x -m "version x.x"
  ```
  4. Para carregar as alterações no Git
  ```sh default
- git push origin main
+    git push origin main
  ```
 
 ## Projeto Desenvolvido por: 
