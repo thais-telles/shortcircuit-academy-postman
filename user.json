@@ -1,0 +1,493 @@
+{
+	"info": {
+		"_postman_id": "3f3867c0-211b-4e82-895d-d939d95919fa",
+		"name": "1. User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27588711",
+		"_collection_link": "https://grey-robot-273771.postman.co/workspace/**-Academy---Short-Circuit-**~7da103ee-263d-4327-bdc5-43cbba73c08b/collection/27588711-3f3867c0-211b-4e82-895d-d939d95919fa?action=share&source=collection_link&creator=27588711"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.globals.set(\"Token\", JSON.parse(responseBody).token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{Token}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mail\": \"{{MailAdmin}}\",\r\n  \"password\": \"{{PasswordAdmin}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Registration Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/// Função para gerar o nome completo\r",
+									"function firstName(){\r",
+									"    \r",
+									"    var firstName = [ \"Maria\",\"João\",\"Ana\",\"Pedro\",\"Carla\",\"Lucas\",\"Mariana\",\"Paulo\",\"Camila\",\"Rafael\",\"Juliana\",\"Gustavo\",\"Larissa\",\"Fernando\",\"Amanda\",\"Diego\",\"Isabela\",\"Ricardo\",\"Natália\",\"Henrique\",\"Lívia\",\"Roberto\",\"Sofia\",\"Eduardo\",\"Vitória\",\"Fábio\",\"Mariana\",\"André\",\"Letícia\",\"Rodrigo\",\"Lara\",\"Guilherme\",\"Bianca\",\"Miguel\",\"Alice\",\"Leonardo\",\"Laura\",\"Daniel\",\"Beatriz\",\"Felipe\",\"Luiza\",\"Arthur\",\"Helena\",\"Gabriel\",\"Valentina\",\"Bernardo\",\"Sophia\",\"Vitor\",\"Clara\",\"Francisco\",\"Yasmin\",\"Enzo\",\"Isabel\",\"Isabella\",\"Lorenzo\",\"Joana\",\"Samuel\",\"Melissa\",\"Otávio\",\"Ana\",\"Breno\",\"Cecília\",\"Benjamin\",\"Luana\",\"Mariane\",\"Davi\",\"Nathália\",\"Raul\",\"Isadora\",\"Marcelo\",\"Luna\",\"Nicolas\",\"Laís\",\"Augusto\",\"Stella\",\"Ruan\",\"Gabriela\",\"Luciano\",\"Evelyn\",\"Thiago\",\"Lorena\",\"Vinícius\",\"Catarina\",\"Murilo\",\"Pietra\",\"Tomás\",\"Carolina\",\"Caio\",\"Manuela\",\"Emanuelly\",\"Lavinia\",\"Lucca\",\"Mirella\",\"Kevin\",\"Rebeca\",\"Anthony\",\"Júlia\"];\r",
+									"\r",
+									"    var randomItem = firstName[Math.floor(Math.random() * firstName.length)];\r",
+									"\r",
+									"    return randomItem;\r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"FirstName\", firstName());\r",
+									"\r",
+									"function lastName(){\r",
+									"    \r",
+									"    var lastName = [\"Silva\",\"Santos\",\"Oliveira\",\"Souza\",\"Rodrigues\",\"Almeida\",\"Costa\",\"Pereira\",\"Carvalho\",\"Ferreira\",\"Gomes\",\"Martins\",\"Rocha\",\"Ribeiro\",\"Alves\",\"Lima\",\"Sousa\",\"Fernandes\",\"Pinto\",\"Cunha\",\"Mendes\",\"Barbosa\",\"Saraiva\",\"Machado\",\"Cardoso\",\"Nogueira\",\"Ramos\",\"Coelho\",\"Araújo\",\"Castro\",\"Fonseca\",\"Rocha\",\"Moreira\",\"Figueiredo\",\"Gonçalves\",\"Monteiro\",\"Marques\",\"Peixoto\",\"Morais\",\"Lopes\",\"Vieira\",\"Tavares\",\"Correia\",\"Neves\",\"Nunes\",\"Cavalcanti\",\"Andrade\",\"Freitas\",\"Coutinho\",\"Rezende\",\"Macedo\",\"Borges\",\"Barros\",\"Melo\",\"Barbosa\",\"Campos\",\"Lemos\",\"Braga\",\"Teixeira\",\"Dias\",\"Albuquerque\",\"Sampaio\",\"Moura\",\"Rocha\",\"Silveira\",\"Aguiar\",\"Abreu\",\"Lima\",\"Pacheco\",\"Vargas\",\"Farias\",\"Moraes\",\"Ferreira\",\"Gusmão\",\"Sousa\",\"Azevedo\",\"Dantas\",\"Cavalcante\",\"Batista\",\"Peixoto\",\"Pires\",\"Leite\",\"Ramos\",\"Macedo\",\"Sales\",\"Carneiro\",\"Monteiro\",\"Goulart\",\"Cruz\",\"Fialho\",\"Xavier\",\"Prado\",\"Valente\",\"Furtado\",\"Vieira\"];\r",
+									"\r",
+									"    var randomItem = lastName[Math.floor(Math.random() * lastName.length)];\r",
+									"\r",
+									"    return randomItem;\r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"LastName\", lastName());\r",
+									"\r",
+									"pm.environment.set(\"FullName\", pm.variables.get(\"FirstName\")+ \" \" +pm.variables.get(\"LastName\"));\r",
+									"\r",
+									"function removeAccents(str) {\r",
+									"    return str.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\");\r",
+									"}\r",
+									"\r",
+									"function mail() {\r",
+									"    const firstNameWithAccents = pm.variables.get(\"FirstName\");\r",
+									"    const firstNameWithoutAccents = removeAccents(firstNameWithAccents);\r",
+									"\r",
+									"    pm.environment.set(\r",
+									"        \"Mail\",\r",
+									"        pm.variables.replaceIn('{{$guid}}') + \"-\" + firstNameWithoutAccents + \"@qacoders-treinamento.com\"\r",
+									"    );\r",
+									"}\r",
+									"\r",
+									"mail();\r",
+									"\r",
+									"function generateCPF() {\r",
+									"  const randomDigit = () => Math.floor(Math.random() * 10);\r",
+									"\r",
+									"// Gere os 9 primeiros dígitos do CPF\r",
+									"  const cpfDigits = Array.from({ length: 9 }, randomDigit);\r",
+									"  \r",
+									"  // Calcule o primeiro dígito verificador\r",
+									"  let sum = 0;\r",
+									"  for (let i = 10; i > 1; i--) {\r",
+									"    sum += cpfDigits[10 - i] * i;\r",
+									"  }\r",
+									"  const firstVerifierDigit = (sum * 10) % 11;\r",
+									"  cpfDigits.push(firstVerifierDigit === 10 ? 0 : firstVerifierDigit);\r",
+									"  \r",
+									"  // Calcule o segundo dígito verificador\r",
+									"  sum = 0;\r",
+									"  for (let i = 11; i > 1; i--) {\r",
+									"    sum += cpfDigits[11 - i] * i;\r",
+									"  }\r",
+									"  const secondVerifierDigit = (sum * 10) % 11;\r",
+									"  cpfDigits.push(secondVerifierDigit === 10 ? 0 : secondVerifierDigit);\r",
+									"  \r",
+									"  return cpfDigits.join('');\r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"CPFUser\", generateCPF());\r",
+									"\r",
+									"// Função para gerar uma senha aleatória\r",
+									"function gerarSenha() {\r",
+									"  const caracteres = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%\";\r",
+									"  const comprimentoMinimo = 8;\r",
+									"  const comprimentoMaximo = 12;\r",
+									"  \r",
+									"  let senhaArray = [];\r",
+									"\r",
+									"  // Garante pelo menos um caractere maiúsculo, minúsculo, número e especial\r",
+									"  senhaArray.push(caracteres[Math.floor(Math.random() * 26)]); // Caractere maiúsculo\r",
+									"  senhaArray.push(caracteres[26 + Math.floor(Math.random() * 26)]); // Caractere minúsculo\r",
+									"  senhaArray.push(caracteres[52 + Math.floor(Math.random() * 10)]); // Número\r",
+									"  senhaArray.push(caracteres[62 + Math.floor(Math.random() * 4)]); // Caractere especial\r",
+									"\r",
+									"  const comprimentoRestante = Math.max(comprimentoMinimo - senhaArray.length, comprimentoMaximo - senhaArray.length);\r",
+									"\r",
+									"  for (let i = 0; i < comprimentoRestante; i++) {\r",
+									"    senhaArray.push(caracteres[Math.floor(Math.random() * caracteres.length)]);\r",
+									"  }\r",
+									"\r",
+									"  return shuffleString(senhaArray.join(\"\"));\r",
+									"}\r",
+									"\r",
+									"// Função para embaralhar uma string\r",
+									"function shuffleString(string) {\r",
+									"  return string.split(\"\").sort(() => Math.random() - 0.5).join(\"\");\r",
+									"}\r",
+									"\r",
+									"pm.environment.set(\"NewPassword\", gerarSenha());\r",
+									"\r",
+									"// Função para gerar como com 100 caracteres\r",
+									"function generateFullName() {\r",
+									"    var firstName = \"F\".repeat(49); // 49 caracteres\r",
+									"    var lastName = \"L\".repeat(50); // 50 caracteres\r",
+									"\r",
+									"    return firstName + \" \" + lastName; // 100 caracteres\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Verify the full name\", function () {\r",
+									"    //Realiza a comparação entre o valor da variável de ambiente \"FullName\" e o nome completo do usuário na resposta da requisição.\r",
+									"    pm.expect(pm.environment.get(\"FullName\")).to.eql(JSON.parse(responseBody).user.fullName);  \r",
+									"   //A asserção acima verifica se os valores são estritamente iguais.\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"IdUser\", JSON.parse(responseBody).user._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fullName\": \"{{FullName}}\",\r\n  \"mail\": \"{{Mail}}\",\r\n  \"password\": \"1234@Test\",\r\n  \"accessProfile\": \"ADMIN\",\r\n  \"cpf\": {{CPFUser}},\r\n  \"confirmPassword\": \"1234@Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/user/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login New User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"*/\r",
+									"\r",
+									"pm.test(\"Verify token is true\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"token\");\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"TokenUser\", JSON.parse(responseBody).token)\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mail\": \"{{MailAdmin}}\",\r\n  \"password\": \"{{PasswordAdmin}}\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Registration Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Registration Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{TokenUser}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/user/{{IdUser}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{IdUser}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{Token}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
